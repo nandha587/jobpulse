@@ -9,6 +9,8 @@ Thumbs.db
 # Backend
 backend/target/
 backend/*.log
+backend/data/
+*.db
 
 # Frontend
 frontend/node_modules/
