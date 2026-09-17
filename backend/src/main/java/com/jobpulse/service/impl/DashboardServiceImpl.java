@@ -9,7 +9,6 @@ import com.jobpulse.mapper.InterviewMapper;
 import com.jobpulse.repository.ApplicationRepository;
 import com.jobpulse.repository.InterviewRepository;
 import com.jobpulse.service.DashboardService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +20,22 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class DashboardServiceImpl implements DashboardService {
 
     private final ApplicationRepository applicationRepository;
     private final InterviewRepository interviewRepository;
     private final ApplicationMapper applicationMapper;
     private final InterviewMapper interviewMapper;
+
+    public DashboardServiceImpl(ApplicationRepository applicationRepository,
+                                InterviewRepository interviewRepository,
+                                ApplicationMapper applicationMapper,
+                                InterviewMapper interviewMapper) {
+        this.applicationRepository = applicationRepository;
+        this.interviewRepository = interviewRepository;
+        this.applicationMapper = applicationMapper;
+        this.interviewMapper = interviewMapper;
+    }
 
     @Override
     @Transactional(readOnly = true)

@@ -10,7 +10,6 @@ import com.jobpulse.entity.enums.Priority;
 import com.jobpulse.security.UserPrincipal;
 import com.jobpulse.service.ApplicationService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,10 +19,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/applications")
-@RequiredArgsConstructor
 public class ApplicationController {
 
     private final ApplicationService applicationService;
+
+    public ApplicationController(ApplicationService applicationService) {
+        this.applicationService = applicationService;
+    }
 
     @PostMapping
     public ResponseEntity<ApplicationResponse> createApplication(

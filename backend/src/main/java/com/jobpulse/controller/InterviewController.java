@@ -5,7 +5,6 @@ import com.jobpulse.dto.response.InterviewResponse;
 import com.jobpulse.security.UserPrincipal;
 import com.jobpulse.service.InterviewService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,10 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
 public class InterviewController {
 
     private final InterviewService interviewService;
+
+    public InterviewController(InterviewService interviewService) {
+        this.interviewService = interviewService;
+    }
 
     @PostMapping("/applications/{applicationId}/interviews")
     public ResponseEntity<InterviewResponse> scheduleInterview(

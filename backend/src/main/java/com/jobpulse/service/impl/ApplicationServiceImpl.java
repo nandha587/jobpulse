@@ -17,7 +17,6 @@ import com.jobpulse.repository.ApplicationStatusHistoryRepository;
 import com.jobpulse.repository.UserRepository;
 import com.jobpulse.repository.specification.ApplicationSpecification;
 import com.jobpulse.service.ApplicationService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ApplicationServiceImpl implements ApplicationService {
 
     private final ApplicationRepository applicationRepository;
@@ -37,6 +35,18 @@ public class ApplicationServiceImpl implements ApplicationService {
     private final ApplicationStatusHistoryRepository statusHistoryRepository;
     private final ApplicationMapper applicationMapper;
     private final StatusHistoryMapper statusHistoryMapper;
+
+    public ApplicationServiceImpl(ApplicationRepository applicationRepository,
+                                  UserRepository userRepository,
+                                  ApplicationStatusHistoryRepository statusHistoryRepository,
+                                  ApplicationMapper applicationMapper,
+                                  StatusHistoryMapper statusHistoryMapper) {
+        this.applicationRepository = applicationRepository;
+        this.userRepository = userRepository;
+        this.statusHistoryRepository = statusHistoryRepository;
+        this.applicationMapper = applicationMapper;
+        this.statusHistoryMapper = statusHistoryMapper;
+    }
 
     @Override
     @Transactional

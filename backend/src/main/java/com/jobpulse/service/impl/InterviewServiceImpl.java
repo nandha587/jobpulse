@@ -11,20 +11,28 @@ import com.jobpulse.repository.ApplicationRepository;
 import com.jobpulse.repository.InterviewRepository;
 import com.jobpulse.service.ApplicationService;
 import com.jobpulse.service.InterviewService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class InterviewServiceImpl implements InterviewService {
 
     private final InterviewRepository interviewRepository;
     private final ApplicationRepository applicationRepository;
     private final ApplicationService applicationService;
     private final InterviewMapper interviewMapper;
+
+    public InterviewServiceImpl(InterviewRepository interviewRepository,
+                                ApplicationRepository applicationRepository,
+                                ApplicationService applicationService,
+                                InterviewMapper interviewMapper) {
+        this.interviewRepository = interviewRepository;
+        this.applicationRepository = applicationRepository;
+        this.applicationService = applicationService;
+        this.interviewMapper = interviewMapper;
+    }
 
     @Override
     @Transactional

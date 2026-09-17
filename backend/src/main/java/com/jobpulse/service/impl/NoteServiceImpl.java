@@ -9,19 +9,25 @@ import com.jobpulse.mapper.NoteMapper;
 import com.jobpulse.repository.ApplicationRepository;
 import com.jobpulse.repository.NoteRepository;
 import com.jobpulse.service.NoteService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class NoteServiceImpl implements NoteService {
 
     private final NoteRepository noteRepository;
     private final ApplicationRepository applicationRepository;
     private final NoteMapper noteMapper;
+
+    public NoteServiceImpl(NoteRepository noteRepository,
+                           ApplicationRepository applicationRepository,
+                           NoteMapper noteMapper) {
+        this.noteRepository = noteRepository;
+        this.applicationRepository = applicationRepository;
+        this.noteMapper = noteMapper;
+    }
 
     @Override
     @Transactional
