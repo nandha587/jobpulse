@@ -93,7 +93,7 @@ public class EmailSyncServiceImpl implements EmailSyncService {
         config.setEmailAddress(request.getEmailAddress().trim());
         config.setImapHost(request.getImapHost().trim());
         config.setImapPort(request.getImapPort());
-        config.setAppPassword(request.getAppPassword().trim());
+        config.setAppPassword(request.getAppPassword().trim().replaceAll("\\s+", ""));
         config.setAutoSyncEnabled(request.isAutoSyncEnabled());
 
         EmailConfig saved = emailConfigRepository.save(config);
@@ -118,7 +118,8 @@ public class EmailSyncServiceImpl implements EmailSyncService {
         try {
             Session session = createImapSession();
             Store store = session.getStore("imaps");
-            store.connect(config.getImapHost(), config.getImapPort(), config.getEmailAddress(), config.getAppPassword());
+            String password = config.getAppPassword() != null ? config.getAppPassword().replaceAll("\\s+", "") : "";
+            store.connect(config.getImapHost(), config.getImapPort(), config.getEmailAddress(), password);
             store.close();
             return true;
         } catch (Exception e) {
@@ -146,7 +147,8 @@ public class EmailSyncServiceImpl implements EmailSyncService {
         try {
             Session session = createImapSession();
             store = session.getStore("imaps");
-            store.connect(config.getImapHost(), config.getImapPort(), config.getEmailAddress(), config.getAppPassword());
+            String password = config.getAppPassword() != null ? config.getAppPassword().replaceAll("\\s+", "") : "";
+            store.connect(config.getImapHost(), config.getImapPort(), config.getEmailAddress(), password);
 
             folder = store.getFolder("INBOX");
             folder.open(Folder.READ_ONLY);
