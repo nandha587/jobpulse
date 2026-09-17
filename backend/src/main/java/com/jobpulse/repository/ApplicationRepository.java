@@ -19,6 +19,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>,
 
     Optional<Application> findByIdAndUserId(Long id, Long userId);
 
+    Optional<Application> findByUserIdAndCompanyNameIgnoreCaseAndJobTitleIgnoreCase(Long userId, String companyName, String jobTitle);
+
     boolean existsByIdAndUserId(Long id, Long userId);
 
     long countByUserId(Long userId);

@@ -27,6 +27,9 @@ export const Navbar = () => {
             <Link to="/applications" className={location.pathname.startsWith('/applications') ? 'active' : ''}>
               Applications
             </Link>
+            <Link to="/email-sync" className={location.pathname === '/email-sync' ? 'active' : ''}>
+              ✉ Auto Sync
+            </Link>
             <div className="nav-user">
               <span className="user-greeting">Hi, {user?.name?.split(' ')[0]}</span>
               <button onClick={handleLogout} className="btn btn-outline btn-sm">

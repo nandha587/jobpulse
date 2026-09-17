@@ -10,6 +10,7 @@ import { RegisterPage } from './pages/RegisterPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { ApplicationsPage } from './pages/ApplicationsPage';
 import { ApplicationDetailPage } from './pages/ApplicationDetailPage';
+import EmailSyncPage from './pages/EmailSyncPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App = () => {
@@ -46,6 +47,14 @@ export const App = () => {
                   element={
                     <ProtectedRoute>
                       <ApplicationDetailPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/email-sync"
+                  element={
+                    <ProtectedRoute>
+                      <EmailSyncPage />
                     </ProtectedRoute>
                   }
                 />
