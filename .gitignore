@@ -1,0 +1,19 @@
+# OS & IDE Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# Backend
+backend/target/
+backend/*.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Docker
+.env
